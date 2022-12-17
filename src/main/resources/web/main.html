@@ -33,13 +33,11 @@
             <div class="col-4 formDiv shadow">
                 <div id="loginTitleDiv">
                     <p class="h3 title">Join League</p>
-                    <p>It seems like you are not currently in a league. Enter a league's code to join
-                    </p>
                 </div>
                 <form>
                     <div class="mb-3 px-3">
                       <!---label for="email" class="form-label">Email</label>-->
-                      <input type="text" class="form-control" id="text">
+                      <input type="text" class="form-control" id="text" value="Enter league code">
                     </div>
                     
                     <button type="button" class="btn btn-primary">Join</button>
@@ -52,17 +50,50 @@
 
     </div>
 
+    <!---IGNORE ABOVE-->
+
     <!-- should be in another page this page should show the leagues you have -->
     <div class="container text-center" id="leagueDiv" style="display:none;">
         <div class="row">
-            <div class="col-4">
-
+            <div class="col-4 formDiv shadow" id="leftDiv">
+                <div id="loginTitleDiv">
+                    <p class="h3 title">Join League</p>
+                </div>
+                <form>
+                    <div class="mb-3 px-3">
+                      <!---label for="email" class="form-label">Email</label>-->
+                      <input type="text" class="form-control text-center" id="text" placeholder="Enter league code">
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary">Join</button>
+                  </form>
+            
             </div>
-            <div class="col-4 formDiv shadow" id="leagueListDiv">
-                
-            </div>
-            <div class="col-4">
-                
+            <div class="col-6 formDiv shadow">
+                <div id="joinDraftTitleDiv">
+                    <p class="h3 title">Leagues</p>
+                    
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> League 1</h5>
+                            <h5>900.5</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> League 2</h5>
+                            <h5>876.6</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> League 3</h5>
+                            <h5>875.3</h5>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
 

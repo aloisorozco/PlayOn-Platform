@@ -9,7 +9,7 @@
     <title>PlayOn Platform</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="showDiv()">
     <nav id="navBar">
         <div class="container">
             <div class="row">
@@ -26,8 +26,36 @@
     <!---show or not -->
     <div class="container text-center" id="joinDraftDiv" style="display:none;">
         <div class="row">
-            <div class="col-4">
-
+            <div class="col-4" id="leftDiv">
+                <div id="teamStandingsTitleDiv">
+                    <p class="h3 title">Team Standings</p>
+                </div>
+                <!--- add style when hovering over and out to active -->
+                    <!--- sort by ranking -->
+                <!-- also have it be a side bar instead with flexbox -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> Team 1</h5>
+                            <h5>900.5</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">2</span> Team 2</h5>
+                            <h5>876.6</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> Team 3</h5>
+                            <h5>875.3</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-2">
+                
             </div>
             <div class="col-4 formDiv shadow">
                 <div id="joinDraftTitleDiv">
@@ -37,7 +65,7 @@
                     <button type="button" class="btn btn-primary">Join</button>
                 </form>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 
             </div>
         </div>
@@ -45,7 +73,143 @@
     </div>
 
     <!--team standings, own team, etc.-->
-    <div style="display:none;">
+    <div class="container text-center" id="leagueStandingDiv" style="display:none;">
+        <div class="row">
+            <div class="col-4" id="leftDiv">
+                <div id="teamStandingsTitleDiv">
+                    <p class="h3 title">Team Standings</p>
+                </div>
+                <!--- add style when hovering over and out to active -->
+                    <!--- sort by ranking -->
+                <!-- also have it be a side bar instead with flexbox -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> Team 1</h5>
+                            <h5>900.5</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">2</span> Team 2</h5>
+                            <h5>876.6</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> Team 3</h5>
+                            <h5>875.3</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div id="teamTitleDiv">
+                    <p class="h3 title">Your Team</p>
+                </div>
+                
+                <div class="list-group" id="teamDiv">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
+                            <h5 class="mb-1"><span class="badge bg-primary">PG</span> Russell Westbrook</h5>
+                            <h5>137.2</h5>
+                        </div>
+                        <div class="statsDiv">
+                            <div class="indStatDiv">
+                                <h6>Points</h6>
+                                <p>130</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Rebounds</h6>
+                                <p>80</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Assists</h6>
+                                <p>90</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Blocks</h6>
+                                <p>30</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Steals</h6>
+                                <p>10</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Turnovers</h6>
+                                <p>50</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
+                            <h5 class="mb-1"><span class="badge bg-primary">SF</span> Lebron James</h5>
+                            <h5>200.5</h5>
+                        </div>
+                        <div class="statsDiv">
+                            <div class="indStatDiv">
+                                <h6>Points</h6>
+                                <p>130</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Rebounds</h6>
+                                <p>80</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Assists</h6>
+                                <p>90</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Blocks</h6>
+                                <p>30</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Steals</h6>
+                                <p>10</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Turnovers</h6>
+                                <p>50</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
+                            <h5 class="mb-1"><span class="badge bg-primary">C</span> Anthony Davis</h5>
+                            <h5>250.1</h5>
+                        </div>
+                        <div class="statsDiv">
+                            <div class="indStatDiv">
+                                <h6>Points</h6>
+                                <p>130</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Rebounds</h6>
+                                <p>80</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Assists</h6>
+                                <p>90</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Blocks</h6>
+                                <p>30</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Steals</h6>
+                                <p>10</p>
+                            </div>
+                            <div class="indStatDiv">
+                                <h6>Turnovers</h6>
+                                <p>50</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     </div>
 

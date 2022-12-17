@@ -6,7 +6,8 @@ function showDiv() {
 
     //also show name on nav bar
 
-    document.getElementById("joinLeagueDiv").style.display = "block";
+    document.getElementById("leagueDiv").style.display = "block";
+    //document.getElementById("joinLeagueDiv").style.display = "block";
 }
 
 function getCookie(cname) {
@@ -42,6 +43,8 @@ function addLeague(league) {
 function getLeagues(username) {
 
     //TBD -> need to figure out in the back end
+
+
     /*var account = {};
 
     account['email'] = email;

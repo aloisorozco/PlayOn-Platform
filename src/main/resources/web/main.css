@@ -29,17 +29,27 @@ body {
 
 /**/
 
-#joinLeagueDiv, #leagueDiv {
+#joinLeagueDiv {
     margin-top: 15%;
+}
+
+#leagueDiv {
+    margin-top: 10%;
 }
 
 .formDiv {
     padding: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
     background-color: var(--whiter);
 }
 
 .title {
     color: var(--darkblue);
+}
+
+#loginTitleDiv, #joinDraftTitleDiv {
+    margin-bottom: 1em;
 }
 
 .formInput {
@@ -48,4 +58,21 @@ body {
 
 button {
     background-color: var(--lightblue);
+}
+
+.league {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.indLeagueDiv {
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+}
+
+#leftDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--whiter);
 }

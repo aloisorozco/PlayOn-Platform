@@ -18,6 +18,10 @@ body {
     background-color: var(--blue);
     margin: 0;
     width: 100%;
+    /**/
+    position: fixed;
+    top: 0;
+    /**/
     padding-top: 1em;
     padding-bottom: 1em;
 }
@@ -28,3 +32,55 @@ body {
 }
 
 /**/
+
+#joinDraftDiv {
+    margin-top: 15%;
+}
+
+#leagueStandingDiv {
+    margin-top: 10%;
+}
+
+.title {
+    color: var(--darkblue);
+    margin-bottom: 1em;
+}
+
+#leftDiv {
+   padding-left: 0%;
+}
+
+.statsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.indStatDiv {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#teamDiv {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#teamTitleDiv {
+    margin-bottom: 1em;
+}
+
+.formDiv {
+    margin-top: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--whiter);
+}
