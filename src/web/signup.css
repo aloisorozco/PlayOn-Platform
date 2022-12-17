@@ -1,0 +1,63 @@
+:root{
+    --blue: #14213d;
+    --white: #f5f3f4;
+    --whiter: #f7f6f6;
+    --lightblue: #4361ee;
+    --darkblue: #03045e;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding:0;
+    background-color: var(--white);
+}
+
+#navBar {
+    background-color: var(--blue);
+    margin: 0;
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#navTitle {
+    text-align: center;
+    color: var(--white);
+}
+
+/**/
+
+#containerDiv {
+    margin-top: 10%;
+}
+
+.ind-div {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.text-div, .password-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#formDiv {
+    padding: 2em;
+    background-color: var(--whiter);
+}
+
+#signupTitle {
+    color: var(--darkblue);
+}
+
+#signupBtn {
+    background-color: var(--lightblue);
+}
+
+.formInput {
+    text-align: center;
+}

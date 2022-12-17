@@ -1,0 +1,51 @@
+:root{
+    --blue: #14213d;
+    --white: #f5f3f4;
+    --whiter: #f7f6f6;
+    --lightblue: #4361ee;
+    --darkblue: #03045e;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding:0;
+    background-color: var(--white);
+}
+
+#navBar {
+    background-color: var(--blue);
+    margin: 0;
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#navTitle {
+    text-align: center;
+    color: var(--white);
+}
+
+/**/
+
+#joinLeagueDiv, #leagueDiv {
+    margin-top: 15%;
+}
+
+.formDiv {
+    padding: 2em;
+    background-color: var(--whiter);
+}
+
+.title {
+    color: var(--darkblue);
+}
+
+.formInput {
+    text-align: center;
+}
+
+button {
+    background-color: var(--lightblue);
+}
