@@ -1,5 +1,7 @@
 package com.playonfantasy.playonplatform.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -26,6 +28,7 @@ public class Account {
     private String password;
 
     @OneToMany(mappedBy="account")
+    @JsonManagedReference(value="account-team")
     private List<Team> teams;
 
     public Account() {

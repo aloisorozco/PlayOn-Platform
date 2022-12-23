@@ -1,0 +1,81 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="editLeague.css">
+    <title>PlayOn Platform</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body onload="showDiv()">
+    <nav id="navBar">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6">
+                    <p class="h2" id="navTitle">PlayOn Platform</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center" id="containerDiv">
+        <div class="row">
+            <div class="col-4 formDiv shadow" id="leftDiv">
+                <div id="editLeagueTitleDiv">
+                    <p class="h3 title">Edit League</p>
+                </div>
+                <form>
+                    <div class="mb-3 px-3">
+                      <!---label for="email" class="form-label">Email</label>-->
+                      <input type="text" class="form-control text-center" id="text" placeholder="current team name">
+                    </div>
+                    <!-- add on change listener-->
+                    <button type="button" class="btn btn-primary">Update league</button>
+                  </form>
+            
+            </div>
+            <div class="col-6" id="mainDiv">
+                <div id="teamStandingsTitleDiv">
+                    <p class="h3 title">League Name's Standings</p>
+                </div>
+                <!--- add style when hovering over and out to active -->
+                    <!--- sort by ranking -->
+                <!-- also have it be a side bar instead with flexbox -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> Team 1</h5>
+                            <h5>900.5</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">2</span> Team 2</h5>
+                            <h5>876.6</h5>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> Team 3</h5>
+                            <h5>875.3</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--TBD-->
+    <div style="display:none;">
+
+    </div>
+    
+    <script src="editLeague.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

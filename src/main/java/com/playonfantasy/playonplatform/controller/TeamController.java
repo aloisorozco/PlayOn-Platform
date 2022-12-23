@@ -1,9 +1,7 @@
 package com.playonfantasy.playonplatform.controller;
 
-import com.playonfantasy.playonplatform.model.Account;
-import com.playonfantasy.playonplatform.model.AccountLeague;
-import com.playonfantasy.playonplatform.model.League;
-import com.playonfantasy.playonplatform.model.Team;
+import com.playonfantasy.playonplatform.model.*;
+import com.playonfantasy.playonplatform.service.AccountService;
 import com.playonfantasy.playonplatform.service.LeagueService;
 import com.playonfantasy.playonplatform.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,34 +19,70 @@ public class TeamController {
     private TeamService teamService;
 
     @Autowired
+    private AccountService accountService;
+
+    @Autowired
     private LeagueService leagueService;
 
-    //check to make sure that int works and doesnt need to be string
     @GetMapping("/getTeamsInLeague")
-    public List<Team> getTeamsInLeague(@RequestParam int leagueId) {
+    public ResponseEntity<List<Team>> getTeamsInLeague(@RequestParam int leagueId) {
         League league = leagueService.getLeagueById(leagueId);
         if (league != null) {
-            return league.getTeams();
+            return new ResponseEntity<>(league.getTeams(), HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    //NOT NECESSARY RN I DONT THINK, INSTEAD WE SHOULD GET LEAGUES FOR ACCOUNT
     @GetMapping("/getTeamsFromAccount")
-    public List<Team> getTeamsFromAccount(@RequestParam int accountId) {
+    public ResponseEntity<List<Team>> getTeamsFromAccount(@RequestParam int accountId) {
 
-        return teamService.getTeamsFromAccount(accountId);
+        return new ResponseEntity<>(teamService.getTeamsFromAccount(accountId), HttpStatus.OK);
     }
 
-    //need new model; TEST that AccountLeague works
+    //!!! TEAM CANT HAVE SAME ACCOUNTID AND LEAGUEID
     @PostMapping("/add")
-    public ResponseEntity<Team> addTeam(AccountLeague accountleague) {
-        Team team = teamService.createTeam(accountleague.getAccount(),
-                leagueService.getLeagueById(accountleague.getLeagueId()));
-        return new ResponseEntity<>(team, HttpStatus.OK);
+    public ResponseEntity<Team> addTeam(@RequestBody AccountLeague accountleague) {
+        try {
+            Team team = teamService.createTeam(accountService.getAccount(accountleague.getUsername()),
+                    leagueService.getLeagueByCode(accountleague.getLeagueCode()));
+            //!!!!should be another model class that just had id
+            return new ResponseEntity<>(team, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity<Team> editTeam(@RequestBody Team team) {
+    //SHOULD BE IN LEAGUECONTROLLER but ill leave here for now
+    @PostMapping("/verifyAccessToLeague")
+    public ResponseEntity<String> verifyAccessToLeague(@RequestBody AccountLeague accountLeague) {
+        try {
+            if (teamService.getTeam(accountService.getIdFromUsername(accountLeague.getUsername()), accountLeague.getLeagueId()) != null) {
+                return new ResponseEntity<>("valid", HttpStatus.OK);
+            }
+            return new ResponseEntity<>("invalid", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/verifyAccessToTeam")
+    public ResponseEntity<String> verifyAccessToTeam(@RequestBody AccountTeam accountTeam) {
+        try {
+            if (teamService.verifyTeamAndAccountAccess(accountTeam.getTeamId(), accountService.getIdFromUsername(accountTeam.getUsername()))) {
+                return new ResponseEntity<>("valid", HttpStatus.OK);
+            }
+            return new ResponseEntity<>("invalid", HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/updateName")
+    public ResponseEntity<Team> updateName(@RequestBody Team team) {
         team = teamService.updateTeam(team);
 
         return new ResponseEntity<>(team, HttpStatus.OK);

@@ -9,5 +9,7 @@ public interface AccountService {
 
     public Account getAccount(String email, String password);
 
-    public Account getAccountByUsername(String username);
+    public Account getAccount(String username);
+
+    public int getIdFromUsername(String username);
 }

@@ -1,7 +1,6 @@
 package com.playonfantasy.playonplatform.controller;
 
-import com.playonfantasy.playonplatform.model.Account;
-import com.playonfantasy.playonplatform.model.League;
+import com.playonfantasy.playonplatform.model.*;
 import com.playonfantasy.playonplatform.model.bballplayer.BasketballPlayer;
 import com.playonfantasy.playonplatform.service.AccountService;
 import com.playonfantasy.playonplatform.service.LeagueService;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,17 +28,21 @@ public class LeagueController {
     private AccountService accountService;
 
     //should prolly be post mapping
-    @GetMapping("/createLeague")
-    public ResponseEntity<League> createLeague(@RequestParam String username) {
-        Account account = accountService.getAccountByUsername(username);
+    @PostMapping("/createLeague")
+    public ResponseEntity<LeagueTeam> createLeague(@RequestBody AccountLeague accountLeague) {
+        Account account = accountService.getAccount(accountLeague.getUsername());
         League league = leagueService.createLeague();
-        teamService.createTeam(account, league);
-        return new ResponseEntity<>(league, HttpStatus.OK);
+        Team team = teamService.createTeam(account, league);
+
+        LeagueTeam leagueTeam = new LeagueTeam();
+        leagueTeam.setLeagueId(league.getId());
+        leagueTeam.setTeamId(team.getId());
+
+        return new ResponseEntity<>(leagueTeam, HttpStatus.OK);
     }
 
-    //called after createLeague and on its own too
-    @PutMapping("/modifyLeague")
-    public ResponseEntity<League> modifyLeague(@RequestBody League league) {
+    @PutMapping("/updateName")
+    public ResponseEntity<League> updateName(@RequestBody League league) {
         league = leagueService.updateLeague(league);
 
         return new ResponseEntity<>(league, HttpStatus.OK);
@@ -50,14 +54,12 @@ public class LeagueController {
         return "League has been deleted";
     }
 
-    //have to do another way; maybe through team idk
-    /*@GetMapping("/getLeagues")
+    @GetMapping("/getLeagues")
     public ResponseEntity<List<League>> getLeagues(@RequestParam String username) {
-        Account accountFromDB = accountService.getAccountByUsername(username);
-        List<League> leagueList = leagueService.getLeaguesFromAccount(accountFromDB);
+        List<League> leagueList = leagueService.getLeagues(accountService.getIdFromUsername(username));
         if (leagueList != null) {
             return new ResponseEntity<>(leagueList ,HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }*/
+    }
 }

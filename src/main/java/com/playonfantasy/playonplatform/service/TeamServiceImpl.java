@@ -47,5 +47,23 @@ public class TeamServiceImpl implements TeamService {
         return teamRepo.findByAccountId(accountId);
     }
 
+    @Override
+    public Team getTeam(int teamId) {
+        return teamRepo.findById(teamId).get();
+    }
+
+    @Override
+    public Team getTeam(int accountId, int leagueId) {
+        return teamRepo.findByAccountIdAndLeagueId(accountId, leagueId);
+    }
+
+    @Override
+    public boolean verifyTeamAndAccountAccess(int id, int accountId) {
+        if (teamRepo.findByIdAndAccountId(id, accountId) != null) {
+            return true;
+        }
+        return false;
+    }
+
 
 }

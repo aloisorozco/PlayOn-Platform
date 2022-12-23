@@ -46,4 +46,14 @@ public class LeagueServiceImpl implements LeagueService {
     public League getLeagueById(int leagueId) {
         return leagueRepo.findById(leagueId).get();
     }
+
+    @Override
+    public League getLeagueByCode(String leagueCode) {
+        return leagueRepo.findByCode(leagueCode);
+    }
+
+    @Override
+    public List<League> getLeagues(int accountId) {
+        return leagueRepo.getLeagues(accountId);
+    }
 }

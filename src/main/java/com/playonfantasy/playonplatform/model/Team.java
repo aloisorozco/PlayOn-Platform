@@ -1,12 +1,16 @@
 package com.playonfantasy.playonplatform.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.playonfantasy.playonplatform.model.bballplayer.BasketballPlayer;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "teams")
+@Table(name = "teams", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"account_id", "league_id"})
+})
 public class Team {
 
     @Id
@@ -17,14 +21,17 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy="team")
+    @JsonManagedReference
     private List<BasketballPlayer> players;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", nullable = false)
+    @JsonBackReference(value="account-team")
     private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "league_id", nullable = false)
+    @JsonBackReference(value="league-team")
     private League league;
 
     public Team() {

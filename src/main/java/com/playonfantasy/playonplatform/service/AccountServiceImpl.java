@@ -26,13 +26,17 @@ public class AccountServiceImpl implements AccountService{
         return accountRepo.save(a);
     }
 
+    public int getIdFromUsername(String username) {
+        return accountRepo.getIdByUsername(username);
+    }
+
     @Override
     public Account getAccount(String email, String password) {
         return accountRepo.findByEmailAndPassword(email, password);
     }
 
     @Override
-    public Account getAccountByUsername(String username) {
+    public Account getAccount(String username) {
         return accountRepo.findByUsername(username);
     }
 }

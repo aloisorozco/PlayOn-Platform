@@ -19,4 +19,6 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
     //have to ensure that there is only one account for a league!!!
     public Team findByAccountIdAndLeagueId(int accountId, int leagueId);
 
+    public Team findByIdAndAccountId(int id, int accountId);
+
 }

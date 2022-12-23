@@ -15,4 +15,10 @@ public interface TeamService {
     public Team updateTeam(Team team);
 
     public List<Team> getTeamsFromAccount(int accountId);
+
+    public Team getTeam(int teamId);
+
+    public Team getTeam(int accountId, int leagueId);
+
+    public boolean verifyTeamAndAccountAccess(int accountId, int teamId);
 }

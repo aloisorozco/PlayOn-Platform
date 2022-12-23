@@ -1,5 +1,6 @@
 package com.playonfantasy.playonplatform.model.bballplayer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.playonfantasy.playonplatform.model.League;
 import com.playonfantasy.playonplatform.model.Team;
 
@@ -16,6 +17,7 @@ public class BasketballPlayer {
     //optional and nullable true since not every player is gna have a fantasy team
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
+    @JsonBackReference
     private Team fantasyTeam;
 
     private String team;

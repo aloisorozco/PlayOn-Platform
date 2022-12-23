@@ -1,5 +1,6 @@
 package com.playonfantasy.playonplatform.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.data.domain.Page;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class League {
     private int id;
 
     @OneToMany(mappedBy="league")
+    @JsonManagedReference(value="league-team")
     private List<Team> teams;
 
     private String name;

@@ -1,0 +1,101 @@
+:root{
+    --blue: #14213d;
+    --white: #f5f3f4;
+    --whiter: #f7f6f6;
+    --lightblue: #4361ee;
+    --darkblue: #03045e;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding:0;
+    background-color: var(--white);
+}
+
+#navBar {
+    background-color: var(--blue);
+    margin: 0;
+    width: 100%;
+    /**/
+    position: fixed;
+    top: 0;
+    /**/
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#navTitle {
+    text-align: center;
+    color: var(--white);
+}
+
+/**/
+
+
+.title {
+    color: var(--darkblue);
+    margin-bottom: 1em;
+}
+
+.statsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.indStatDiv {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#teamDiv {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#teamTitleDiv {
+    margin-bottom: 1em;
+}
+
+.formDiv {
+    margin-top: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--whiter);
+}
+
+#containerTeamDiv {
+    margin-top: 10%;
+}
+
+/**/
+.formDiv {
+    padding: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    background-color: var(--whiter);
+}
+
+#editTeamTitle {
+}
+
+#leftDiv {
+    height: min-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    color: var(--darkblue);
+}

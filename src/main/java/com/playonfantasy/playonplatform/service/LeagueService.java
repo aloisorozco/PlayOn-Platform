@@ -14,4 +14,8 @@ public interface LeagueService {
     public void deleteLeague(int leagueId);
 
     public League getLeagueById(int leagueId);
+
+    public League getLeagueByCode(String leagueCode);
+
+    public List<League> getLeagues(int accountId);
 }
