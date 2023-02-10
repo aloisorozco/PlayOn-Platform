@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="editLeague.css">
     <title>PlayOn Platform</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="verifyLogin.js"></script>
+    <script src="verifyAccessToLeague.js"></script>
 </head>
-<body onload="showDiv()">
+<body onload="onLoad()">
     <nav id="navBar">
         <div class="container">
             <div class="row">
@@ -29,39 +31,24 @@
                 <form>
                     <div class="mb-3 px-3">
                       <!---label for="email" class="form-label">Email</label>-->
-                      <input type="text" class="form-control text-center" id="text" placeholder="current team name">
+                      <input type="text" class="form-control text-center" id="leagueName" placeholder="current team name">
                     </div>
-                    <!-- add on change listener-->
-                    <button type="button" class="btn btn-primary">Update league</button>
+                    <div>
+                        <p id="errorMsg"></p>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="updateLeagueBtnClicked()">Update</button>
                   </form>
             
             </div>
             <div class="col-6" id="mainDiv">
                 <div id="teamStandingsTitleDiv">
-                    <p class="h3 title">League Name's Standings</p>
+                    <p class="h3 title" id="leagueNameTitle">League Name's Standings</p>
                 </div>
                 <!--- add style when hovering over and out to active -->
                     <!--- sort by ranking -->
                 <!-- also have it be a side bar instead with flexbox -->
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> Team 1</h5>
-                            <h5>900.5</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">2</span> Team 2</h5>
-                            <h5>876.6</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> Team 3</h5>
-                            <h5>875.3</h5>
-                        </div>
-                    </a>
+                <div class="list-group" id="teamList">
+                    
                 </div>
             </div>
         </div>

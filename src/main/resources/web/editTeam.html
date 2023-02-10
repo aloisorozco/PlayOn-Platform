@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="editTeam.css">
     <title>PlayOn Platform</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="verifyLogin.js"></script>
+    <script src="verifyAccessToTeam.js"></script>
 </head>
-<body>
+<body onload="onLoad()">
     <nav id="navBar">
         <div class="container">
             <div class="row">
@@ -34,10 +36,10 @@
                     <div class="mb-3 px-3 py-2">
                       <!---label for="email" class="form-label">Email</label>-->
                       <!--ADD onchange listener to update name in h3 title Your Team-->
-                      <input type="text" class="form-control text-center" id="teamNameText" placeholder="Current team name">
+                      <input type="text" class="form-control text-center" id="teamName" placeholder="Current team name">
                     </div>
                     
-                    <button type="button" class="btn btn-primary">Update name</button>
+                    <button type="button" class="btn btn-primary" onclick="updateTeamBtnClicked()">Update</button>
                   </form>
             
             </div>
@@ -45,103 +47,8 @@
                 <div id="teamTitleDiv">
                     <p class="h3 title">Your Team</p>
                 </div>
-                <div class="list-group" id="teamDiv">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
-                            <h5 class="mb-1"><span class="badge bg-primary">PG</span> Russell Westbrook</h5>
-                            <h5>137.2</h5>
-                        </div>
-                        <div class="statsDiv">
-                            <div class="indStatDiv">
-                                <h6>Points</h6>
-                                <p>130</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Rebounds</h6>
-                                <p>80</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Assists</h6>
-                                <p>90</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Blocks</h6>
-                                <p>30</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Steals</h6>
-                                <p>10</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Turnovers</h6>
-                                <p>50</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
-                            <h5 class="mb-1"><span class="badge bg-primary">SF</span> Lebron James</h5>
-                            <h5>200.5</h5>
-                        </div>
-                        <div class="statsDiv">
-                            <div class="indStatDiv">
-                                <h6>Points</h6>
-                                <p>130</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Rebounds</h6>
-                                <p>80</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Assists</h6>
-                                <p>90</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Blocks</h6>
-                                <p>30</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Steals</h6>
-                                <p>10</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Turnovers</h6>
-                                <p>50</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between pt-2 pr-2">
-                            <h5 class="mb-1"><span class="badge bg-primary">C</span> Anthony Davis</h5>
-                            <h5>250.1</h5>
-                        </div>
-                        <div class="statsDiv">
-                            <div class="indStatDiv">
-                                <h6>Points</h6>
-                                <p>130</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Rebounds</h6>
-                                <p>80</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Assists</h6>
-                                <p>90</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Blocks</h6>
-                                <p>30</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Steals</h6>
-                                <p>10</p>
-                            </div>
-                            <div class="indStatDiv">
-                                <h6>Turnovers</h6>
-                                <p>50</p>
-                            </div>
-                        </div>
-                    </a>
+                <div class="list-group" id="playerList">
+                    
                 </div>
             </div>
         </div>

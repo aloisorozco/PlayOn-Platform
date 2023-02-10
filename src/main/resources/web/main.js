@@ -2,12 +2,11 @@ function showDiv() {
     //check if cookie is set to see if logged in
     //if not redirect to login.html
     var username = getCookie("username");
-    console.log(username);
-
-    //also show name on nav bar
 
     document.getElementById("leagueDiv").style.display = "block";
     //document.getElementById("joinLeagueDiv").style.display = "block";
+
+    getLeagues(username);
 }
 
 function getCookie(cname) {
@@ -42,18 +41,74 @@ function addLeague(league) {
 
 function getLeagues(username) {
 
-    //TBD -> need to figure out in the back end
+    $.ajax({
+        url: `http://localhost:8080/league/getLeagues?username=${username}`,
+        type: 'GET',
+        data: null,
+        crossDomain: true,
+        crossOrigin: true,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        success: showLeagues,
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log(errorMessage);
+        }
+    });
+}
 
+function showLeagues(leagueList, status, xhr) {
+    //MISSING TEAM INFO (standing in league and total fantasy points)
 
-    /*var account = {};
+    if (leagueList.length == 0) {
+        document.getElementById("noLeagueDiv").style.display = "block";
+    }
+    else {
+        document.getElementById("noLeagueDiv").style.display = "none";
+        leagueList.forEach(showLeague);
+    }
+}
 
-    account['email'] = email;
-    account['password'] = password;
+function showLeague(league) {
+    var a = document.createElement("a");
+    a.href = `/league.html?id=${league.id}`;
+    a.className = "list-group-item list-group-item-action flex-column align-items-start";
 
-    var json = JSON.stringify(account);
+    var div = document.createElement("div");
+    div.className = "d-flex w-100 justify-content-between indLeagueDiv";
+
+    var leagueTitle = document.createElement("h5");
+    leagueTitle.className = "mb-1";
+    leagueTitle.innerHTML = ` ${league.name}`;//TEST
+
+    /*var span = document.createElement("span");
+    span.className = "badge bg-primary";
+    span.innerHTML = "1";//FOR NOW
+
+    leagueTitle.prepend(span);
+
+    var fPoints = document.createElement("h5");
+    fPoints.innerHTML = "900";//FOR NOW*/
+
+    div.appendChild(leagueTitle);
+    //div.appendChild(fPoints);
+
+    a.appendChild(div);
+
+    document.getElementById("leagueList").appendChild(a);
+}
+
+function joinBtnClicked() {
+    
+    var requestBody = {};
+
+    requestBody['username'] = getCookie("username");
+    requestBody['leagueCode'] = document.getElementById("joinCode").value;
+
+    var json = JSON.stringify(requestBody);
 
     $.ajax({
-        url: 'http://localhost:8080/account/verifyLogin',
+        url: 'http://localhost:8080/team/add',
         type: 'POST',
         data: json,
         crossDomain: true,
@@ -61,10 +116,21 @@ function getLeagues(username) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        success: loggedIn,
+        success: joinLeagueSuccess,
         error: function (jqXhr, textStatus, errorMessage) {
+            setInvalidCode();
             console.log(errorMessage);
         }
-    });*/
+    });
+}
+
+function joinLeagueSuccess(responseBody, status, xh) {
+    getLeagues(getCookie("username"));
+}
+
+function setInvalidCode() {
+    var p = document.getElementById("invalidMsg");
+    p.innerHTML = "Invalid code";
+    p.style.color = "#D90429";
 }
 

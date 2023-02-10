@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <title>PlayOn Platform</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="verifyLogin.js"></script>
 </head>
 <body onload="showDiv()">
     <nav id="navBar">
@@ -61,37 +62,24 @@
                 <form>
                     <div class="mb-3 px-3">
                       <!---label for="email" class="form-label">Email</label>-->
-                      <input type="text" class="form-control text-center" id="text" placeholder="Enter league code">
+                      <input type="text" class="form-control text-center" id="joinCode" placeholder="Enter league code">
                     </div>
-                    
-                    <button type="button" class="btn btn-primary">Join</button>
+                    <div>
+                        <p id="invalidMsg"></p>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="joinBtn" onclick="joinBtnClicked()">Join</button>
                   </form>
             
             </div>
             <div class="col-6 formDiv">
                 <div id="joinDraftTitleDiv">
                     <p class="h3 title">Leagues</p>
-                    
+                    <div id="noLeagueDiv">
+                        <p id="noLeagueMsg">You are currently in no leagues</p>
+                    </div>
                 </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> League 1</h5>
-                            <h5>900.5</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">3</span> League 2</h5>
-                            <h5>876.6</h5>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between indLeagueDiv">
-                            <h5 class="mb-1"><!--figure tihs out later--><span class="badge bg-primary">1</span> League 3</h5>
-                            <h5>875.3</h5>
-                        </div>
-                    </a>
+                <div class="list-group" id="leagueList">
+                    
                 </div>
             </div>
         </div>
