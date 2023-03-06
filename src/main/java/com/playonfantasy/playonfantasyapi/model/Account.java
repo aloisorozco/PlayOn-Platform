@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name="accounts")
@@ -21,9 +22,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique=true)
-    @NotNull
-    private String username;
+
 
     @Column(unique=true)
     @Email(message = "Email is not valid")

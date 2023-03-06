@@ -5,6 +5,7 @@ import com.playonfantasy.playonfantasyapi.model.League;
 import com.playonfantasy.playonfantasyapi.model.Team;
 import com.playonfantasy.playonfantasyapi.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -66,14 +67,20 @@ public class LeagueServiceImpl implements LeagueService {
     }
 
     @Override
-    public League create(Account account) {
-        Account a = accountService.getAccount(account.getUsername());
-        League league = this.createLeague();
-        Team team = teamService.createTeam(a, league);
+    public League create(Account account) throws ChangeSetPersister.NotFoundException {
+        Account a = accountService.getAccount(account.getId());
+        League league = createLeague();
+
+        addTeam(a, league, true);
+
+        return league;
+    }
+
+    @Override
+    public void addTeam(Account account, League league, boolean isManager) {
+        Team team = teamService.createTeam(account, league, isManager);
 
         league.setTeams(Arrays.asList(team));
         leagueRepo.save(league);
-
-        return league;
     }
 }

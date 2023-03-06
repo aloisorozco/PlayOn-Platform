@@ -7,10 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    public Account findByUsername(String username);
+    /*public Account findByUsername(String username);*/
 
     public Account findByEmailAndPassword(String email, String password);
 
-    @Query(value = "SELECT id FROM ACCOUNTS WHERE username=:username", nativeQuery = true)
-    public int getIdByUsername(@Param("username") String username);
+    /*@Query(value = "SELECT id FROM ACCOUNTS WHERE username=:username", nativeQuery = true)
+    public int getIdByUsername(@Param("username") String username);*/
 }

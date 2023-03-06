@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -25,7 +27,7 @@ public class AccountController {
      * @return TODO should return a JWT Token
      */
     @PostMapping("/login")
-    public ResponseEntity<Account> login(@RequestBody Account account) {
+    public ResponseEntity<Integer> login(@RequestBody Account account) {
         Account a;
         try{
             a = accountService.getAccount(account.getEmail(),account.getPassword());
@@ -33,7 +35,7 @@ public class AccountController {
 
             //TODO: return AccountResponse model object instead
             //or JWT Token idk
-            return new ResponseEntity<>(a, HttpStatus.OK);
+            return new ResponseEntity<>(a.getId(), HttpStatus.OK);
         }
         catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -46,10 +48,11 @@ public class AccountController {
      * @return TODO: return nothing?
      */
     @PostMapping("/register")
-    public ResponseEntity<Account> register(@RequestBody Account account) {
+    public ResponseEntity<String> register(@RequestBody Account account) {
+        //TODO: handle duplicate acc
         Account a = accountService.saveAccount(account);
         if (a != null) {
-            return new ResponseEntity<>(a, HttpStatus.OK);
+            return new ResponseEntity<>("Success", HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -59,7 +62,7 @@ public class AccountController {
      * @param account
      * @return TODO: MsgModel
      */
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<String> update(@RequestBody Account account) {
         try{
             accountService.updateAccount(account);

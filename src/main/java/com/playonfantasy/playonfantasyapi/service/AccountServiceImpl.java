@@ -3,7 +3,10 @@ package com.playonfantasy.playonfantasyapi.service;
 import com.playonfantasy.playonfantasyapi.model.Account;
 import com.playonfantasy.playonfantasyapi.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -25,17 +28,22 @@ public class AccountServiceImpl implements AccountService{
         return accountRepo.save(a);
     }
 
-    public int getIdFromUsername(String username) {
+    /*public int getIdFromUsername(String username) {
         return accountRepo.getIdByUsername(username);
-    }
+    }*/
 
     @Override
     public Account getAccount(String email, String password) {
         return accountRepo.findByEmailAndPassword(email, password);
     }
 
-    @Override
+    /*@Override
     public Account getAccount(String username) {
         return accountRepo.findByUsername(username);
+    }*/
+
+    @Override
+    public Account getAccount(int id) throws ChangeSetPersister.NotFoundException {
+        return accountRepo.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
     }
 }

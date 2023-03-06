@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "teams", uniqueConstraints={
@@ -22,7 +23,6 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
 
     private String name;
 
@@ -39,6 +39,8 @@ public class Team {
     @JoinColumn(name = "league_id", nullable = false)
     @JsonBackReference(value="league-team")
     private League league;
+
+    private boolean manager;
 
     private double fPoints;
 }

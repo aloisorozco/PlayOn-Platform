@@ -1,6 +1,7 @@
 package com.playonfantasy.playonfantasyapi.model.player.basketball;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.playonfantasy.playonfantasyapi.model.League;
 import com.playonfantasy.playonfantasyapi.model.Team;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="players")
+@Table(name="players", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"name", "team_id", "league_id"})})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +26,11 @@ public class BasketballPlayer {
     @JoinColumn(name = "team_id")
     @JsonBackReference(value = "team-player")
     private Team fantasyTeam;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "league_id")
+    @JsonBackReference(value = "league-player")
+    private League league;
 
     private String team;
     private String position;

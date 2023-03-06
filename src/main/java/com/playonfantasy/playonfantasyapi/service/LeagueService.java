@@ -3,6 +3,7 @@ package com.playonfantasy.playonfantasyapi.service;
 import com.playonfantasy.playonfantasyapi.model.Account;
 import com.playonfantasy.playonfantasyapi.model.League;
 import com.playonfantasy.playonfantasyapi.model.Team;
+import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.List;
 
@@ -20,5 +21,8 @@ public interface LeagueService {
 
     public List<League> getLeagues(int accountId);
 
-    public League create(Account account);
+    public League create(Account account) throws ChangeSetPersister.NotFoundException;
+
+    public void addTeam(Account account, League league, boolean isManager);
+
 }

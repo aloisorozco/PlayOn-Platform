@@ -20,11 +20,12 @@ public class TeamServiceImpl implements TeamService {
     private BasketballPlayerService bballPlayerService;
 
     @Override
-    public Team createTeam(Account account, League league) {
+    public Team createTeam(Account account, League league, boolean isManager) {
         Team team = new Team();
-        team.setName(account.getUsername() + "'s team");
+        team.setName(account.getEmail() + "'s team");
         team.setAccount(account);
         team.setLeague(league);
+        team.setManager(isManager);
 
         team = teamRepo.save(team);
 
@@ -92,6 +93,23 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public int getLeagueId(int teamId) {
         return teamRepo.getLeagueId(teamId);
+    }
+
+    @Override
+    public boolean verifyAccountInLeague(int accountId, int id) {
+        if (teamRepo.findByAccountIdAndLeagueId(id, accountId) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean verifyAccountAndLeagueAccess(int accountId, int id) {
+        Team t = teamRepo.findByAccountIdAndLeagueId(id, accountId);
+        if (t != null && t.isManager()){
+            return true;
+        }
+        return false;
     }
 
 

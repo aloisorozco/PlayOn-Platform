@@ -28,7 +28,7 @@ public class BasketballPlayerController {
      * @param name
      * @return BasketballPlayer
      */
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<BasketballPlayer> get(@RequestParam(name = "name") String name) {
         return new ResponseEntity(bballPlayerService.findByName(name), HttpStatus.OK);
     }
@@ -38,8 +38,10 @@ public class BasketballPlayerController {
      * @param teamId
      * @return BasketballPlayerList
      */
+    //TODO: check accountId has access to team
+    //TODO: also need leagueId to get players!!!
     @GetMapping("/team")
-    public ResponseEntity<List<BasketballPlayer>> getByTeamId(@RequestParam int teamId) {
+    public ResponseEntity<List<BasketballPlayer>> getPlayersByTeamId(@RequestParam int teamId) {
         Team team = teamService.getTeam(teamId);
         if (team != null) {
             return new ResponseEntity<>(team.getPlayers(), HttpStatus.OK);
@@ -47,27 +49,6 @@ public class BasketballPlayerController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    //TODO: refactor
-    //should not be here should be in team controller
-    /*@PostMapping("/league")
-    public ResponseEntity<List<BasketballPlayer>> postSearch(@RequestBody League league) {
-        Team team = teamService.getTeam(accountService.getIdFromUsername(accountLeague.getUsername()), accountLeague.getLeagueId());
-        if (team != null) {
-            return new ResponseEntity<>(bballPlayerService.getPlayers(team.getId()), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }*/
-
-    public void updateTeamId(){
-
-    }
-
-    public void getOrderedPlayers() {
-
-    }
-
-    public void getPlayerInTeam() {
-
-    }
+    //TODO: add endpoint for adding a player to team (add team_id and league_id to db)
 
 }
