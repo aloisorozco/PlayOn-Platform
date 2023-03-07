@@ -58,5 +58,11 @@ public class TeamController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    //TODO: add getTeamByAccountId endpoint
+    @PostMapping("/verifyManager")
+    public ResponseEntity<String> verifyManager(@RequestHeader(value="id") int accountId, @RequestParam int id) {
+        if (teamService.verifyTeamAndAccountAccess(id, accountId)) {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
 }

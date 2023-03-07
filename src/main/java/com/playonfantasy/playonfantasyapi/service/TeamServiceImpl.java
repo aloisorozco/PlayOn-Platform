@@ -104,8 +104,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public boolean verifyAccountAndLeagueAccess(int accountId, int id) {
-        Team t = teamRepo.findByAccountIdAndLeagueId(id, accountId);
+    public boolean verifyAccountAndLeagueAccess(int accountId, int leagueId) {
+        Team t = teamRepo.findByAccountIdAndLeagueId(accountId, leagueId);
         if (t != null && t.isManager()){
             return true;
         }

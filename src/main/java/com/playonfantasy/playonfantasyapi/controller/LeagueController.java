@@ -102,4 +102,12 @@ public class LeagueController {
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/verifyManager")
+    public ResponseEntity<String> verifyManager(@RequestHeader(value="id") int accountId, @RequestParam int id) {
+        if (teamService.verifyAccountAndLeagueAccess(accountId, id)) {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
 }

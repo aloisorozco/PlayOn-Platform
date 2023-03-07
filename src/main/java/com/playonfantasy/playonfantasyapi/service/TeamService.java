@@ -20,7 +20,7 @@ public interface TeamService {
 
     public Team getTeam(int accountId, int leagueId);
 
-    public boolean verifyTeamAndAccountAccess(int accountId, int teamId);
+    public boolean verifyTeamAndAccountAccess(int id, int accountId);
 
     public void setPlayersForTeams(List<Team> teams);
 
@@ -28,5 +28,5 @@ public interface TeamService {
 
     public boolean verifyAccountInLeague(int accountId, int id);
 
-    public boolean verifyAccountAndLeagueAccess(int accountId, int id);
+    public boolean verifyAccountAndLeagueAccess(int accountId, int leagueId);
 }
